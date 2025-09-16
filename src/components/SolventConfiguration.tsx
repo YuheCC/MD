@@ -71,7 +71,7 @@ export function SolventConfiguration() {
               </div>
               <div className="flex-1">
                 <Label htmlFor={`fraction-${solvent.id}`} className="mb-2 block text-foreground">
-                  Weight Fraction (min: 0.05)
+                  Fraction (min: 0.05)
                 </Label>
                 <Input
                   id={`fraction-${solvent.id}`}
