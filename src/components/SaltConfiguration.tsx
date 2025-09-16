@@ -180,7 +180,11 @@ export function SaltConfiguration() {
                 value="mole"
                 checked={fractionType === "mole"}
                 onChange={(e) => setFractionType(e.target.value)}
-                style={{ width: '12px', height: '12px' }}
+                style={{ 
+                  width: '12px', 
+                  height: '12px',
+                  accentColor: '#16a34a'
+                }}
               />
               <span className="text-foreground" style={{ fontWeight: 'normal', fontSize: '14px' }}>Mole fraction</span>
             </label>
@@ -191,7 +195,11 @@ export function SaltConfiguration() {
                 value="weight"
                 checked={fractionType === "weight"}
                 onChange={(e) => setFractionType(e.target.value)}
-                style={{ width: '12px', height: '12px' }}
+                style={{ 
+                  width: '12px', 
+                  height: '12px',
+                  accentColor: '#16a34a'
+                }}
               />
               <span className="text-foreground" style={{ fontWeight: 'normal', fontSize: '14px' }}>Weight fraction</span>
             </label>
