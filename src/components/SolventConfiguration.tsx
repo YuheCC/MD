@@ -165,7 +165,7 @@ export function SolventConfiguration() {
               Fraction type: {fractionType === "mole" ? "Mole fraction" : "Weight fraction"}
             </div>
             <div className={`text-sm ${totalWeightFraction === 1 ? "text-green-600" : "text-destructive"}`}>
-              Total {fractionType === "mole" ? "mole" : "weight"} fraction: {totalWeightFraction.toFixed(2)} {totalWeightFraction === 1 ? "✓" : ""}
+              Total fraction: {totalWeightFraction.toFixed(2)} {totalWeightFraction === 1 ? "✓" : ""}
             </div>
           </div>
         </div>
