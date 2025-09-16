@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Badge } from "./ui/badge";
+import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { useState } from "react";
 
 interface Ion {
@@ -30,6 +31,7 @@ export function SaltConfiguration() {
   const [selectedAnions, setSelectedAnions] = useState<string[]>(["BF4-"]);
   const [concentration, setConcentration] = useState("1.00");
   const [anionFractions, setAnionFractions] = useState<{[key: string]: string}>({"BF4-": "1.00"});
+  const [fractionType, setFractionType] = useState("mole");
 
   const handleAnionSelection = (anionSymbol: string) => {
     setSelectedAnions(prev => {
@@ -168,6 +170,29 @@ export function SaltConfiguration() {
           </div>
         ))}
 
+        {/* Fraction Type */}
+        <div>
+          <Label className="mb-3 block text-foreground">Fraction Type</Label>
+          <RadioGroup
+            value={fractionType}
+            onValueChange={setFractionType}
+            className="flex gap-6"
+          >
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="mole" id="mole" />
+              <Label htmlFor="mole" className="text-foreground cursor-pointer">
+                Mole fraction
+              </Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="weight" id="weight" />
+              <Label htmlFor="weight" className="text-foreground cursor-pointer">
+                Weight fraction
+              </Label>
+            </div>
+          </RadioGroup>
+        </div>
+
         {/* Salt Summary */}
         <div>
           <h4 className="mb-3 text-gray-900 font-medium">Salt Summary</h4>
@@ -180,6 +205,9 @@ export function SaltConfiguration() {
             </div>
             <div className="text-sm text-muted-foreground mb-1">
               Fractions: {selectedAnions.map(anion => `${anion} (${anionFractions[anion] || "0.00"})`).join(", ")}
+            </div>
+            <div className="text-sm text-muted-foreground mb-1">
+              Fraction type: {fractionType === "mole" ? "Mole fraction" : "Weight fraction"}
             </div>
             <div 
               className="text-sm"
