@@ -172,28 +172,40 @@ export function SaltConfiguration() {
         {/* Fraction Type */}
         <div>
           <Label className="mb-3 block text-foreground">Fraction Type</Label>
-          <div className="grid grid-cols-2 gap-3">
-            <div
-              className={`p-4 border border-gray-300 rounded-lg text-center transition-all flex flex-col justify-center items-center cursor-pointer ${
-                fractionType === "mole"
-                  ? ""
-                  : "bg-white hover:bg-gray-50"
-              }`}
-              style={fractionType === "mole" ? { backgroundColor: '#f0f9f0', color: '#2d5a2d' } : {}}
-              onClick={() => setFractionType("mole")}
-            >
-              <div className="text-sm mb-1" style={fractionType === "mole" ? { color: '#2d5a2d' } : {}}>Mole fraction</div>
+          <div className="flex gap-6">
+            <div className="flex items-center space-x-2">
+              <input
+                type="radio"
+                id="mole"
+                name="fractionType"
+                value="mole"
+                checked={fractionType === "mole"}
+                onChange={(e) => setFractionType(e.target.value)}
+                className="w-4 h-4 text-primary border-gray-300 focus:ring-primary"
+                style={{
+                  accentColor: '#16a34a'
+                }}
+              />
+              <Label htmlFor="mole" className="text-foreground cursor-pointer" style={{ fontWeight: 'normal' }}>
+                Mole fraction
+              </Label>
             </div>
-            <div
-              className={`p-4 border border-gray-300 rounded-lg text-center transition-all flex flex-col justify-center items-center cursor-pointer ${
-                fractionType === "weight"
-                  ? ""
-                  : "bg-white hover:bg-gray-50"
-              }`}
-              style={fractionType === "weight" ? { backgroundColor: '#f0f9f0', color: '#2d5a2d' } : {}}
-              onClick={() => setFractionType("weight")}
-            >
-              <div className="text-sm mb-1" style={fractionType === "weight" ? { color: '#2d5a2d' } : {}}>Weight fraction</div>
+            <div className="flex items-center space-x-2">
+              <input
+                type="radio"
+                id="weight"
+                name="fractionType"
+                value="weight"
+                checked={fractionType === "weight"}
+                onChange={(e) => setFractionType(e.target.value)}
+                className="w-4 h-4 text-primary border-gray-300 focus:ring-primary"
+                style={{
+                  accentColor: '#16a34a'
+                }}
+              />
+              <Label htmlFor="weight" className="text-foreground cursor-pointer" style={{ fontWeight: 'normal' }}>
+                Weight fraction
+              </Label>
             </div>
           </div>
         </div>
