@@ -14,6 +14,7 @@ interface AnalysisRecord {
     concentration: string;
     fractions: { [key: string]: string };
     totalFraction: string;
+    fractionType: string;
   };
   solventConfig: {
     smiles: string[];
@@ -37,7 +38,8 @@ export function AnalysisRecords({ onNewAnalysis }: AnalysisRecordsProps) {
         anion: "BF4-",
         concentration: "1.00",
         fractions: { "BF4-": "1.00" },
-        totalFraction: "1.00"
+        totalFraction: "1.00",
+        fractionType: "mole"
       },
       solventConfig: {
         smiles: ["CCO"],
@@ -54,7 +56,8 @@ export function AnalysisRecords({ onNewAnalysis }: AnalysisRecordsProps) {
         anion: "TFSI-",
         concentration: "1.20",
         fractions: { "TFSI-": "1.00" },
-        totalFraction: "1.00"
+        totalFraction: "1.00",
+        fractionType: "weight"
       },
       solventConfig: {
         smiles: ["CCOCC"],
@@ -71,7 +74,8 @@ export function AnalysisRecords({ onNewAnalysis }: AnalysisRecordsProps) {
         anion: "BF4-, PF6-",
         concentration: "1.00",
         fractions: { "BF4-": "0.50", "PF6-": "0.50" },
-        totalFraction: "1.00"
+        totalFraction: "1.00",
+        fractionType: "mole"
       },
       solventConfig: {
         smiles: ["CCO", "CCOCC"],
@@ -157,6 +161,10 @@ export function AnalysisRecords({ onNewAnalysis }: AnalysisRecordsProps) {
                                          </div>
                                        </div>
                                        <div className="flex justify-between">
+                                         <span className="text-gray-600">Fraction type:</span>
+                                         <span>{record.saltConfig.fractionType === "mole" ? "Mole fraction" : "Weight fraction"}</span>
+                                       </div>
+                                       <div className="flex justify-between">
                                          <span className="text-gray-600">Total fraction:</span>
                                          <span className={record.saltConfig.totalFraction === "1.00" ? "text-gray-900" : "text-red-600"}>
                                            {record.saltConfig.totalFraction}
@@ -176,10 +184,14 @@ export function AnalysisRecords({ onNewAnalysis }: AnalysisRecordsProps) {
                                 <div className="text-right">
                                   {record.solventConfig.smiles.map((smile, index) => (
                                     <div key={index}>
-                                      {smile}: {record.solventConfig.fractions[index]} ({record.solventConfig.fractionType})
+                                      {smile}: {record.solventConfig.fractions[index]}
                                     </div>
                                   ))}
                                 </div>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-gray-600">Fraction type:</span>
+                                <span>{record.solventConfig.fractionType === "mole" ? "Mole fraction" : "Weight fraction"}</span>
                               </div>
                             </div>
                           </CardContent>
