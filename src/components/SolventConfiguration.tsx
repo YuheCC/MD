@@ -2,7 +2,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Button } from "./ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { useState } from "react";
 import { X } from "lucide-react";
 
@@ -13,7 +12,6 @@ interface Solvent {
 }
 
 export function SolventConfiguration() {
-  const [fractionType, setFractionType] = useState("weight");
   const [solvents, setSolvents] = useState<Solvent[]>([
     { id: 1, smiles: "CCO", weightFraction: "1.00" }
   ]);
@@ -53,16 +51,6 @@ export function SolventConfiguration() {
       <h2 className="text-gray-900 font-medium mb-3" style={{ fontSize: '18px' }}>Solvent Configuration</h2>
       <Card className="w-full border border-gray-300">
         <CardContent className="p-6 space-y-6">
-        {/* Fraction Type */}
-        <div>
-          <Label className="mb-3 block text-foreground">Fraction Type</Label>
-          <Tabs value={fractionType} onValueChange={setFractionType}>
-            <TabsList className="grid grid-cols-2 bg-gray-100" style={{ width: 'calc(100% - 40px)' }}>
-              <TabsTrigger value="weight">Weight Fraction</TabsTrigger>
-              <TabsTrigger value="molar">Molar Fraction</TabsTrigger>
-            </TabsList>
-          </Tabs>
-        </div>
 
         {/* SMILES Strings */}
         <div className="space-y-4">
@@ -82,7 +70,7 @@ export function SolventConfiguration() {
               </div>
               <div className="flex-1">
                 <Label htmlFor={`fraction-${solvent.id}`} className="mb-2 block text-foreground">
-                  {fractionType === "weight" ? "Weight Fraction" : "Molar Fraction"} (min: 0.05)
+                  Weight Fraction (min: 0.05)
                 </Label>
                 <Input
                   id={`fraction-${solvent.id}`}
@@ -136,7 +124,7 @@ export function SolventConfiguration() {
               Solvent: {solvents.map(s => `${s.smiles || "Empty"} (${s.weightFraction})`).join(", ")}
             </div>
             <div className={`text-sm ${totalWeightFraction === 1 ? "text-green-600" : "text-destructive"}`}>
-              Total {fractionType} fraction: {totalWeightFraction.toFixed(2)} {totalWeightFraction === 1 ? "✓" : ""}
+              Total weight fraction: {totalWeightFraction.toFixed(2)} {totalWeightFraction === 1 ? "✓" : ""}
             </div>
           </div>
         </div>
