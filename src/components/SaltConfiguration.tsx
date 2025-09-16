@@ -173,27 +173,27 @@ export function SaltConfiguration() {
         <div>
           <Label className="mb-3 block text-foreground">Fraction Type</Label>
           <div className="flex gap-6">
-            <label className="flex items-center space-x-3 cursor-pointer">
+            <label className="flex items-center cursor-pointer" style={{ gap: '12px' }}>
               <input
                 type="radio"
                 name="fractionType"
                 value="mole"
                 checked={fractionType === "mole"}
                 onChange={(e) => setFractionType(e.target.value)}
-                className="w-3 h-3"
+                style={{ width: '12px', height: '12px' }}
               />
-              <span className="text-foreground text-sm" style={{ fontWeight: 'normal' }}>Mole fraction</span>
+              <span className="text-foreground" style={{ fontWeight: 'normal', fontSize: '14px' }}>Mole fraction</span>
             </label>
-            <label className="flex items-center space-x-3 cursor-pointer">
+            <label className="flex items-center cursor-pointer" style={{ gap: '12px' }}>
               <input
                 type="radio"
                 name="fractionType"
                 value="weight"
                 checked={fractionType === "weight"}
                 onChange={(e) => setFractionType(e.target.value)}
-                className="w-3 h-3"
+                style={{ width: '12px', height: '12px' }}
               />
-              <span className="text-foreground text-sm" style={{ fontWeight: 'normal' }}>Weight fraction</span>
+              <span className="text-foreground" style={{ fontWeight: 'normal', fontSize: '14px' }}>Weight fraction</span>
             </label>
           </div>
         </div>
