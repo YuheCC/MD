@@ -172,41 +172,31 @@ export function SaltConfiguration() {
         {/* Fraction Type */}
         <div>
           <Label className="mb-3 block text-foreground">Fraction Type</Label>
-          <div className="flex gap-6">
-            <div className="flex items-center space-x-2">
-              <input
-                type="radio"
-                id="mole"
-                name="fractionType"
-                value="mole"
-                checked={fractionType === "mole"}
-                onChange={(e) => setFractionType(e.target.value)}
-                className="w-4 h-4 text-primary border-gray-300 focus:ring-primary"
-                style={{
-                  accentColor: '#16a34a'
-                }}
-              />
-              <Label htmlFor="mole" className="text-foreground cursor-pointer" style={{ fontWeight: 'normal' }}>
-                Mole fraction
-              </Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <input
-                type="radio"
-                id="weight"
-                name="fractionType"
-                value="weight"
-                checked={fractionType === "weight"}
-                onChange={(e) => setFractionType(e.target.value)}
-                className="w-4 h-4 text-primary border-gray-300 focus:ring-primary"
-                style={{
-                  accentColor: '#16a34a'
-                }}
-              />
-              <Label htmlFor="weight" className="text-foreground cursor-pointer" style={{ fontWeight: 'normal' }}>
-                Weight fraction
-              </Label>
-            </div>
+          <div className="flex gap-3">
+            <button
+              type="button"
+              onClick={() => setFractionType("mole")}
+              className={`px-4 py-2 border border-gray-300 rounded-lg text-center transition-all ${
+                fractionType === "mole"
+                  ? ""
+                  : "bg-white hover:bg-gray-50"
+              }`}
+              style={fractionType === "mole" ? { backgroundColor: '#f0f9f0', color: '#2d5a2d' } : {}}
+            >
+              <div className="text-sm" style={fractionType === "mole" ? { color: '#2d5a2d' } : {}}>Mole fraction</div>
+            </button>
+            <button
+              type="button"
+              onClick={() => setFractionType("weight")}
+              className={`px-4 py-2 border border-gray-300 rounded-lg text-center transition-all ${
+                fractionType === "weight"
+                  ? ""
+                  : "bg-white hover:bg-gray-50"
+              }`}
+              style={fractionType === "weight" ? { backgroundColor: '#f0f9f0', color: '#2d5a2d' } : {}}
+            >
+              <div className="text-sm" style={fractionType === "weight" ? { color: '#2d5a2d' } : {}}>Weight fraction</div>
+            </button>
           </div>
         </div>
 
