@@ -193,6 +193,12 @@ export function AnalysisRecords({ onNewAnalysis }: AnalysisRecordsProps) {
                                 <span className="text-gray-600">Fraction type:</span>
                                 <span>{record.solventConfig.fractionType === "mole" ? "Mole fraction" : "Weight fraction"}</span>
                               </div>
+                              <div className="flex justify-between">
+                                <span className="text-gray-600">Total fraction:</span>
+                                <span className={record.solventConfig.fractions.reduce((sum, fraction) => sum + parseFloat(fraction || "0"), 0) === 1 ? "text-gray-900" : "text-red-600"}>
+                                  {record.solventConfig.fractions.reduce((sum, fraction) => sum + parseFloat(fraction || "0"), 0).toFixed(2)}
+                                </span>
+                              </div>
                             </div>
                           </CardContent>
                         </Card>
