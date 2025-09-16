@@ -29,7 +29,7 @@ export function SaltConfiguration() {
   const [selectedCation, setSelectedCation] = useState("Li+");
   const [selectedAnions, setSelectedAnions] = useState<string[]>(["BF4-"]);
   const [concentration, setConcentration] = useState("1.00");
-  const [anionMoleRatios, setAnionMoleRatios] = useState<{[key: string]: string}>({"BF4-": "1.00"});
+  const [anionFractions, setAnionFractions] = useState<{[key: string]: string}>({"BF4-": "1.00"});
 
   const handleAnionSelection = (anionSymbol: string) => {
     setSelectedAnions(prev => {
@@ -37,11 +37,11 @@ export function SaltConfiguration() {
         // 如果已选中，取消选择（但至少保留一个）
         if (prev.length > 1) {
           const newSelected = prev.filter(anion => anion !== anionSymbol);
-          // 移除对应的 mole ratio
-          setAnionMoleRatios(ratios => {
-            const newRatios = { ...ratios };
-            delete newRatios[anionSymbol];
-            return newRatios;
+          // 移除对应的 fraction
+          setAnionFractions(fractions => {
+            const newFractions = { ...fractions };
+            delete newFractions[anionSymbol];
+            return newFractions;
           });
           return newSelected;
         }
@@ -50,18 +50,18 @@ export function SaltConfiguration() {
         // 如果未选中，添加选择（但最多两个）
         if (prev.length < 2) {
           const newSelected = [...prev, anionSymbol];
-          // 为新添加的 anion 设置默认 mole ratio
-          setAnionMoleRatios(ratios => {
-            const newRatios = { ...ratios };
+          // 为新添加的 anion 设置默认 fraction
+          setAnionFractions(fractions => {
+            const newFractions = { ...fractions };
             // 如果现在有两个 anion，将两个都设置为 0.50
             if (newSelected.length === 2) {
               newSelected.forEach(anion => {
-                newRatios[anion] = "0.50";
+                newFractions[anion] = "0.50";
               });
             } else {
-              newRatios[anionSymbol] = "0.50";
+              newFractions[anionSymbol] = "0.50";
             }
-            return newRatios;
+            return newFractions;
           });
           return newSelected;
         }
@@ -70,8 +70,8 @@ export function SaltConfiguration() {
     });
   };
 
-  const handleMoleRatioChange = (anionSymbol: string, value: string) => {
-    setAnionMoleRatios(prev => ({
+  const handleFractionChange = (anionSymbol: string, value: string) => {
+    setAnionFractions(prev => ({
       ...prev,
       [anionSymbol]: value
     }));
@@ -153,16 +153,16 @@ export function SaltConfiguration() {
           />
         </div>
 
-        {/* Anion Mole Ratios */}
+        {/* Anion Fractions */}
         {selectedAnions.map((anionSymbol) => (
           <div key={anionSymbol}>
-            <Label htmlFor={`moleRatio-${anionSymbol}`} className="mb-2 block text-foreground">
-              {anionSymbol} Mole Ratio
+            <Label htmlFor={`fraction-${anionSymbol}`} className="mb-2 block text-foreground">
+              {anionSymbol} Fraction
             </Label>
             <Input
-              id={`moleRatio-${anionSymbol}`}
-              value={anionMoleRatios[anionSymbol] || "0.00"}
-              onChange={(e) => handleMoleRatioChange(anionSymbol, e.target.value)}
+              id={`fraction-${anionSymbol}`}
+              value={anionFractions[anionSymbol] || "0.00"}
+              onChange={(e) => handleFractionChange(anionSymbol, e.target.value)}
               className="w-full bg-white border-gray-300"
             />
           </div>
@@ -179,15 +179,15 @@ export function SaltConfiguration() {
               Total salt concentration: {concentration} mol/kg
             </div>
             <div className="text-sm text-muted-foreground mb-1">
-              Mole ratios: {selectedAnions.map(anion => `${anion} (${anionMoleRatios[anion] || "0.00"})`).join(", ")}
+              Fractions: {selectedAnions.map(anion => `${anion} (${anionFractions[anion] || "0.00"})`).join(", ")}
             </div>
             <div 
               className="text-sm"
               style={{
-                color: Object.values(anionMoleRatios).reduce((sum, ratio) => sum + parseFloat(ratio || "0"), 0) === 1 ? '#16a34a' : '#dc2626'
+                color: Object.values(anionFractions).reduce((sum, fraction) => sum + parseFloat(fraction || "0"), 0) === 1 ? '#16a34a' : '#dc2626'
               }}
             >
-              Total mole ratio: {Object.values(anionMoleRatios).reduce((sum, ratio) => sum + parseFloat(ratio || "0"), 0).toFixed(2)} {Object.values(anionMoleRatios).reduce((sum, ratio) => sum + parseFloat(ratio || "0"), 0) === 1 ? "✓" : "✗"}
+              Total fraction: {Object.values(anionFractions).reduce((sum, fraction) => sum + parseFloat(fraction || "0"), 0).toFixed(2)} {Object.values(anionFractions).reduce((sum, fraction) => sum + parseFloat(fraction || "0"), 0) === 1 ? "✓" : "✗"}
             </div>
           </div>
         </div>

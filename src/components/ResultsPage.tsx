@@ -19,9 +19,9 @@ export function ResultsPage({ onNavigateBack, onNewAnalysis }: ResultsPageProps)
           cation: "Li+",
           anions: ["BF4-"],
           concentration: "1.00",
-          moleRatios: {
-            "BF4-": "1.00"
-          }
+               fractions: {
+                 "BF4-": "1.00"
+               }
         },
         solvent: {
           smiles: ["CCO"],

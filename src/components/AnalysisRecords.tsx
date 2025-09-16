@@ -12,8 +12,8 @@ interface AnalysisRecord {
     cation: string;
     anion: string;
     concentration: string;
-    moleRatios: { [key: string]: string };
-    totalMoleRatio: string;
+    fractions: { [key: string]: string };
+    totalFraction: string;
   };
   solventConfig: {
     smiles: string[];
@@ -36,8 +36,8 @@ export function AnalysisRecords({ onNewAnalysis }: AnalysisRecordsProps) {
         cation: "Li+",
         anion: "BF4-",
         concentration: "1.00",
-        moleRatios: { "BF4-": "1.00" },
-        totalMoleRatio: "1.00"
+        fractions: { "BF4-": "1.00" },
+        totalFraction: "1.00"
       },
       solventConfig: {
         smiles: ["CCO"],
@@ -53,8 +53,8 @@ export function AnalysisRecords({ onNewAnalysis }: AnalysisRecordsProps) {
         cation: "Li+",
         anion: "TFSI-",
         concentration: "1.20",
-        moleRatios: { "TFSI-": "1.00" },
-        totalMoleRatio: "1.00"
+        fractions: { "TFSI-": "1.00" },
+        totalFraction: "1.00"
       },
       solventConfig: {
         smiles: ["CCOCC"],
@@ -70,8 +70,8 @@ export function AnalysisRecords({ onNewAnalysis }: AnalysisRecordsProps) {
         cation: "Li+",
         anion: "BF4-, PF6-",
         concentration: "1.00",
-        moleRatios: { "BF4-": "0.50", "PF6-": "0.50" },
-        totalMoleRatio: "1.00"
+        fractions: { "BF4-": "0.50", "PF6-": "0.50" },
+        totalFraction: "1.00"
       },
       solventConfig: {
         smiles: ["CCO", "CCOCC"],
@@ -148,20 +148,20 @@ export function AnalysisRecords({ onNewAnalysis }: AnalysisRecordsProps) {
                                 <span className="text-gray-600">Total salt concentration:</span>
                                 <span>{record.saltConfig.concentration} mol/kg</span>
                               </div>
-                              <div className="flex justify-between">
-                                <span className="text-gray-600">Mole ratios:</span>
-                                <div className="text-right">
-                                  {Object.entries(record.saltConfig.moleRatios).map(([anion, ratio]) => (
-                                    <div key={anion}>{anion}: {ratio}</div>
-                                  ))}
-                                </div>
-                              </div>
-                              <div className="flex justify-between">
-                                <span className="text-gray-600">Total mole ratio:</span>
-                                <span className={record.saltConfig.totalMoleRatio === "1.00" ? "text-gray-900" : "text-red-600"}>
-                                  {record.saltConfig.totalMoleRatio}
-                                </span>
-                              </div>
+                                       <div className="flex justify-between">
+                                         <span className="text-gray-600">Fractions:</span>
+                                         <div className="text-right">
+                                           {Object.entries(record.saltConfig.fractions).map(([anion, fraction]) => (
+                                             <div key={anion}>{anion}: {fraction}</div>
+                                           ))}
+                                         </div>
+                                       </div>
+                                       <div className="flex justify-between">
+                                         <span className="text-gray-600">Total fraction:</span>
+                                         <span className={record.saltConfig.totalFraction === "1.00" ? "text-gray-900" : "text-red-600"}>
+                                           {record.saltConfig.totalFraction}
+                                         </span>
+                                       </div>
                             </div>
                           </CardContent>
                         </Card>
