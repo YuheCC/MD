@@ -30,7 +30,7 @@ export function SaltConfiguration() {
   const [selectedAnions, setSelectedAnions] = useState<string[]>(["BF4-"]);
   const [concentration, setConcentration] = useState("1.00");
   const [anionFractions, setAnionFractions] = useState<{[key: string]: string}>({"BF4-": "1.00"});
-  const [fractionType, setFractionType] = useState("mole");
+  const [fractionType, setFractionType] = useState("molar");
 
   const handleAnionSelection = (anionSymbol: string) => {
     setSelectedAnions(prev => {
@@ -177,8 +177,8 @@ export function SaltConfiguration() {
               <input
                 type="radio"
                 name="fractionType"
-                value="mole"
-                checked={fractionType === "mole"}
+                value="molar"
+                checked={fractionType === "molar"}
                 onChange={(e) => setFractionType(e.target.value)}
                 style={{ 
                   width: '12px', 
@@ -186,7 +186,7 @@ export function SaltConfiguration() {
                   accentColor: '#16a34a'
                 }}
               />
-              <span className="text-foreground" style={{ fontWeight: 'normal', fontSize: '14px' }}>Mole fraction</span>
+              <span className="text-foreground" style={{ fontWeight: 'normal', fontSize: '14px' }}>Molar fraction</span>
             </label>
             <label className="flex items-center cursor-pointer" style={{ gap: '12px' }}>
               <input
@@ -220,7 +220,7 @@ export function SaltConfiguration() {
               Fractions: {selectedAnions.map(anion => `${anion} (${anionFractions[anion] || "0.00"})`).join(", ")}
             </div>
             <div className="text-sm text-muted-foreground mb-1">
-              Fraction type: {fractionType === "mole" ? "Mole fraction" : "Weight fraction"}
+              Fraction type: {fractionType === "molar" ? "Molar fraction" : "Weight fraction"}
             </div>
             <div 
               className="text-sm"

@@ -12,7 +12,7 @@ interface Solvent {
 }
 
 export function SolventConfiguration() {
-  const [fractionType, setFractionType] = useState("mole");
+  const [fractionType, setFractionType] = useState("molar");
   const [solvents, setSolvents] = useState<Solvent[]>([
     { id: 1, smiles: "CCO", weightFraction: "1.00" }
   ]);
@@ -125,8 +125,8 @@ export function SolventConfiguration() {
               <input
                 type="radio"
                 name="solventFractionType"
-                value="mole"
-                checked={fractionType === "mole"}
+                value="molar"
+                checked={fractionType === "molar"}
                 onChange={(e) => setFractionType(e.target.value)}
                 style={{ 
                   width: '12px', 
@@ -134,7 +134,7 @@ export function SolventConfiguration() {
                   accentColor: '#16a34a'
                 }}
               />
-              <span className="text-foreground" style={{ fontWeight: 'normal', fontSize: '14px' }}>Mole fraction</span>
+              <span className="text-foreground" style={{ fontWeight: 'normal', fontSize: '14px' }}>Molar fraction</span>
             </label>
             <label className="flex items-center cursor-pointer" style={{ gap: '12px' }}>
               <input
@@ -162,7 +162,7 @@ export function SolventConfiguration() {
               Solvent: {solvents.map(s => `${s.smiles || "Empty"} (${s.weightFraction})`).join(", ")}
             </div>
             <div className="text-sm text-muted-foreground mb-1">
-              Fraction type: {fractionType === "mole" ? "Mole fraction" : "Weight fraction"}
+              Fraction type: {fractionType === "molar" ? "Molar fraction" : "Weight fraction"}
             </div>
             <div className={`text-sm ${totalWeightFraction === 1 ? "text-green-600" : "text-destructive"}`}>
               Total fraction: {totalWeightFraction.toFixed(2)} {totalWeightFraction === 1 ? "✓" : ""}

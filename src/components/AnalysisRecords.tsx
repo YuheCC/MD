@@ -39,7 +39,7 @@ export function AnalysisRecords({ onNewAnalysis }: AnalysisRecordsProps) {
         concentration: "1.00",
         fractions: { "BF4-": "1.00" },
         totalFraction: "1.00",
-        fractionType: "mole"
+        fractionType: "molar"
       },
       solventConfig: {
         smiles: ["CCO"],
@@ -75,7 +75,7 @@ export function AnalysisRecords({ onNewAnalysis }: AnalysisRecordsProps) {
         concentration: "1.00",
         fractions: { "BF4-": "0.50", "PF6-": "0.50" },
         totalFraction: "1.00",
-        fractionType: "mole"
+        fractionType: "molar"
       },
       solventConfig: {
         smiles: ["CCO", "CCOCC"],
@@ -162,7 +162,7 @@ export function AnalysisRecords({ onNewAnalysis }: AnalysisRecordsProps) {
                                        </div>
                                        <div className="flex justify-between">
                                          <span className="text-gray-600">Fraction type:</span>
-                                         <span>{record.saltConfig.fractionType === "mole" ? "Mole fraction" : "Weight fraction"}</span>
+                                         <span>{record.saltConfig.fractionType === "molar" ? "Molar fraction" : "Weight fraction"}</span>
                                        </div>
                                        <div className="flex justify-between">
                                          <span className="text-gray-600">Total fraction:</span>
@@ -191,7 +191,7 @@ export function AnalysisRecords({ onNewAnalysis }: AnalysisRecordsProps) {
                               </div>
                               <div className="flex justify-between">
                                 <span className="text-gray-600">Fraction type:</span>
-                                <span>{record.solventConfig.fractionType === "mole" ? "Mole fraction" : "Weight fraction"}</span>
+                                <span>{record.solventConfig.fractionType === "molar" ? "Molar fraction" : "Weight fraction"}</span>
                               </div>
                               <div className="flex justify-between">
                                 <span className="text-gray-600">Total fraction:</span>
