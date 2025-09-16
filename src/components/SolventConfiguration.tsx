@@ -12,6 +12,7 @@ interface Solvent {
 }
 
 export function SolventConfiguration() {
+  const [fractionType, setFractionType] = useState("mole");
   const [solvents, setSolvents] = useState<Solvent[]>([
     { id: 1, smiles: "CCO", weightFraction: "1.00" }
   ]);
@@ -116,6 +117,43 @@ export function SolventConfiguration() {
           + Add SMILES {solvents.length >= 3 ? "(Max 3)" : ""}
         </Button>
 
+        {/* Fraction Type */}
+        <div>
+          <Label className="mb-3 block text-foreground">Fraction Type</Label>
+          <div className="flex gap-6">
+            <label className="flex items-center cursor-pointer" style={{ gap: '12px' }}>
+              <input
+                type="radio"
+                name="solventFractionType"
+                value="mole"
+                checked={fractionType === "mole"}
+                onChange={(e) => setFractionType(e.target.value)}
+                style={{ 
+                  width: '12px', 
+                  height: '12px',
+                  accentColor: '#16a34a'
+                }}
+              />
+              <span className="text-foreground" style={{ fontWeight: 'normal', fontSize: '14px' }}>Mole fraction</span>
+            </label>
+            <label className="flex items-center cursor-pointer" style={{ gap: '12px' }}>
+              <input
+                type="radio"
+                name="solventFractionType"
+                value="weight"
+                checked={fractionType === "weight"}
+                onChange={(e) => setFractionType(e.target.value)}
+                style={{ 
+                  width: '12px', 
+                  height: '12px',
+                  accentColor: '#16a34a'
+                }}
+              />
+              <span className="text-foreground" style={{ fontWeight: 'normal', fontSize: '14px' }}>Weight fraction</span>
+            </label>
+          </div>
+        </div>
+
         {/* Solvent Summary */}
         <div>
           <h4 className="mb-3 text-gray-900 font-medium">Solvent Summary</h4>
@@ -123,8 +161,11 @@ export function SolventConfiguration() {
             <div className="text-sm text-muted-foreground mb-1">
               Solvent: {solvents.map(s => `${s.smiles || "Empty"} (${s.weightFraction})`).join(", ")}
             </div>
+            <div className="text-sm text-muted-foreground mb-1">
+              Fraction type: {fractionType === "mole" ? "Mole fraction" : "Weight fraction"}
+            </div>
             <div className={`text-sm ${totalWeightFraction === 1 ? "text-green-600" : "text-destructive"}`}>
-              Total weight fraction: {totalWeightFraction.toFixed(2)} {totalWeightFraction === 1 ? "✓" : ""}
+              Total {fractionType === "mole" ? "mole" : "weight"} fraction: {totalWeightFraction.toFixed(2)} {totalWeightFraction === 1 ? "✓" : ""}
             </div>
           </div>
         </div>
