@@ -180,13 +180,13 @@ export function SaltConfiguration() {
           >
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="mole" id="mole" />
-              <Label htmlFor="mole" className="text-foreground cursor-pointer">
+              <Label htmlFor="mole" className="text-foreground cursor-pointer" style={{ fontWeight: 'normal' }}>
                 Mole fraction
               </Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="weight" id="weight" />
-              <Label htmlFor="weight" className="text-foreground cursor-pointer">
+              <Label htmlFor="weight" className="text-foreground cursor-pointer" style={{ fontWeight: 'normal' }}>
                 Weight fraction
               </Label>
             </div>
