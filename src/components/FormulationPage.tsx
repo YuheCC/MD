@@ -256,7 +256,7 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    <div className="flex space-x-4">
+                    <div className="flex space-x-6">
                       <button
                         className="text-blue-600 hover:text-blue-900 hover:underline cursor-pointer text-sm"
                         onClick={() => onNavigateToResults()}
