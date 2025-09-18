@@ -37,6 +37,7 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
+          VITE_BASE_PATH: /MD/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
