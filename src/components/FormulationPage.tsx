@@ -59,16 +59,6 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
                   </div>
                 </div>
 
-                {/* Progress Section */}
-                <div className="mb-6">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-gray-700 font-medium">总体进度</span>
-                    <span className="text-gray-700 font-medium">{progress}%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div className="bg-green-600 h-2 rounded-full transition-all duration-300" style={{ width: `${progress}%` }}></div>
-                  </div>
-                </div>
 
                 {/* Information Box */}
                 <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
