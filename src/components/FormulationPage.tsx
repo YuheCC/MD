@@ -4,6 +4,7 @@ import { SolventConfiguration } from "./SolventConfiguration";
 import { AnalysisRecords } from "./AnalysisRecords";
 import { Button } from "./ui/button";
 import { useState } from "react";
+import { Plus, Eye, Trash2 } from "lucide-react";
 
 interface FormulationPageProps {
   onNavigateToResults: () => void;
@@ -12,6 +13,44 @@ interface FormulationPageProps {
 export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [currentView, setCurrentView] = useState<'list' | 'config'>('list');
+
+  // 示例历史分析记录数据
+  const analysisRecords = [
+    {
+      id: 1,
+      name: "LiPF6 + EC/EMC Analysis",
+      salt: "LiPF6",
+      solvent: "EC/EMC",
+      concentration: "1.0 mol/kg",
+      fractionType: "Molar fraction",
+      totalFraction: "1.00",
+      createdAt: "2024-01-15 14:30",
+      status: "Completed"
+    },
+    {
+      id: 2,
+      name: "LiTFSI + DME Analysis",
+      salt: "LiTFSI",
+      solvent: "DME",
+      concentration: "0.8 mol/kg",
+      fractionType: "Weight fraction",
+      totalFraction: "1.00",
+      createdAt: "2024-01-14 09:15",
+      status: "Completed"
+    },
+    {
+      id: 3,
+      name: "LiBF4 + PC Analysis",
+      salt: "LiBF4",
+      solvent: "PC",
+      concentration: "1.2 mol/kg",
+      fractionType: "Molar fraction",
+      totalFraction: "0.95",
+      createdAt: "2024-01-13 16:45",
+      status: "Completed"
+    }
+  ];
 
   const handleSubmitConfiguration = async () => {
     setIsLoading(true);
@@ -85,31 +124,151 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
     );
   }
 
+  // 渲染配置页面
+  const renderConfigView = () => (
+    <div className="space-y-8">
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl font-semibold text-gray-900">New Configuration</h2>
+        <Button 
+          variant="outline" 
+          onClick={() => setCurrentView('list')}
+        >
+          Back to List
+        </Button>
+      </div>
+      
+      <SaltConfiguration />
+      <SolventConfiguration />
+      
+      <div className="flex justify-center pt-6">
+        <Button 
+          size="lg" 
+          className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3"
+          onClick={handleSubmitConfiguration}
+        >
+          Submit Configuration
+        </Button>
+      </div>
+    </div>
+  );
+
+  // 渲染列表页面
+  const renderListView = () => (
+    <div className="space-y-6">
+      {/* 页面标题和新增按钮 */}
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl font-semibold text-gray-900">Salt & Solvent Configuration</h2>
+        <Button 
+          onClick={() => setCurrentView('config')}
+          className="bg-primary hover:bg-primary/90 text-primary-foreground"
+        >
+          <Plus className="w-4 h-4 mr-2" />
+          New Analysis
+        </Button>
+      </div>
+
+      {/* 历史记录表格 */}
+      <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-gray-50 border-b border-gray-200">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Analysis Name
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Salt
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Solvent
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Concentration
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Fraction Type
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Total Fraction
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Created
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Status
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {analysisRecords.map((record) => (
+                <tr key={record.id} className="hover:bg-gray-50">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    {record.name}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {record.salt}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {record.solvent}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {record.concentration}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {record.fractionType}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <span className={record.totalFraction === "1.00" ? "text-green-600" : "text-red-600"}>
+                      {record.totalFraction}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {record.createdAt}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+                      {record.status}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <div className="flex space-x-2">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="text-blue-600 hover:text-blue-900"
+                      >
+                        <Eye className="w-4 h-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="text-red-600 hover:text-red-900"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-white">
       <ConfigurationHeader />
       
       <div className="pb-12" style={{ paddingLeft: '100px', paddingRight: '100px' }}>
-        <div className="max-w-7xl mx-auto flex gap-8">
+        <div className="max-w-7xl mx-auto">
           {/* Main Content Area */}
-          <div className="flex-1 space-y-8">
-            <SaltConfiguration />
-            <SolventConfiguration />
-            
-            <div className="flex justify-center pt-6">
-              <Button 
-                size="lg" 
-                className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3"
-                onClick={handleSubmitConfiguration}
-              >
-                Submit Configuration
-              </Button>
-            </div>
-          </div>
-
-          {/* Analysis Records Sidebar */}
-          <div className="w-72 flex-shrink-0">
-            <AnalysisRecords />
+          <div className="flex-1">
+            {currentView === 'list' ? renderListView() : renderConfigView()}
           </div>
         </div>
       </div>
