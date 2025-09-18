@@ -24,13 +24,27 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-green-600 mx-auto mb-6"></div>
-          <h2 className="text-2xl font-semibold text-gray-900 mb-2">计算正在进行中...</h2>
-          <p className="text-gray-600 mb-4">请耐心等待，计算需要较长时间</p>
-          <div className="text-sm text-gray-500">
-            完成后会自动跳转到结果页面
+      <div className="min-h-screen bg-white">
+        <ConfigurationHeader />
+        
+        <div className="pb-12" style={{ paddingLeft: '100px', paddingRight: '100px' }}>
+          <div className="max-w-7xl mx-auto flex gap-8">
+            {/* Main Content Area - Loading Overlay */}
+            <div className="flex-1 flex items-center justify-center" style={{ minHeight: '600px' }}>
+              <div className="text-center">
+                <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-green-600 mx-auto mb-6"></div>
+                <h2 className="text-2xl font-semibold text-gray-900 mb-2">计算正在进行中...</h2>
+                <p className="text-gray-600 mb-4">请耐心等待，计算需要较长时间</p>
+                <div className="text-sm text-gray-500">
+                  完成后会自动跳转到结果页面
+                </div>
+              </div>
+            </div>
+
+            {/* Analysis Records Sidebar - Still Visible */}
+            <div className="w-72 flex-shrink-0">
+              <AnalysisRecords />
+            </div>
           </div>
         </div>
       </div>
