@@ -129,9 +129,8 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
                 {/* Close Button */}
                 <div style={{ marginTop: '30px' }}>
                   <Button 
-                    variant="outline" 
                     onClick={() => setCurrentView('list')}
-                    className="px-6 py-2"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground"
                   >
                     关闭
                   </Button>
