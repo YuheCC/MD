@@ -255,16 +255,16 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
                       {record.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     <div className="flex space-x-4">
                       <button
-                        className="text-blue-600 hover:text-blue-900 hover:underline cursor-pointer"
+                        className="text-blue-600 hover:text-blue-900 hover:underline cursor-pointer text-sm"
                         onClick={() => onNavigateToResults()}
                       >
                         查看
                       </button>
                       <button
-                        className="text-red-600 hover:text-red-900 hover:underline cursor-pointer"
+                        className="text-red-600 hover:text-red-900 hover:underline cursor-pointer text-sm"
                       >
                         删除
                       </button>
