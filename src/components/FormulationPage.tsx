@@ -124,13 +124,15 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
                 </div>
 
                 {/* Close Button */}
-                <Button 
-                  variant="outline" 
-                  onClick={() => setCurrentView('list')}
-                  className="px-6 py-2"
-                >
-                  关闭
-                </Button>
+                <div style={{ marginTop: '30px' }}>
+                  <Button 
+                    variant="outline" 
+                    onClick={() => setCurrentView('list')}
+                    className="px-6 py-2"
+                  >
+                    关闭
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
