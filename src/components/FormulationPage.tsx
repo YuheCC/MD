@@ -11,15 +11,29 @@ interface FormulationPageProps {
 
 export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
   const [isLoading, setIsLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const handleSubmitConfiguration = async () => {
     setIsLoading(true);
+    setProgress(0);
+    
+    // 模拟进度条动画
+    const progressInterval = setInterval(() => {
+      setProgress(prev => {
+        if (prev >= 100) {
+          clearInterval(progressInterval);
+          return 100;
+        }
+        return prev + 2; // 每100ms增加2%，总共5秒完成
+      });
+    }, 100);
     
     // 模拟计算过程，实际应用中这里会是真实的API调用
     setTimeout(() => {
       setIsLoading(false);
+      setProgress(0);
       onNavigateToResults();
-    }, 3000); // 3秒后完成
+    }, 5000); // 5秒后完成
   };
 
   if (isLoading) {
@@ -49,10 +63,10 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
                 <div className="mb-6">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-gray-700 font-medium">总体进度</span>
-                    <span className="text-gray-700 font-medium">0%</span>
+                    <span className="text-gray-700 font-medium">{progress}%</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div className="bg-green-600 h-2 rounded-full transition-all duration-300" style={{ width: '0%' }}></div>
+                    <div className="bg-green-600 h-2 rounded-full transition-all duration-300" style={{ width: `${progress}%` }}></div>
                   </div>
                 </div>
 
