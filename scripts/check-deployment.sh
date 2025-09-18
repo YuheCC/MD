@@ -23,7 +23,7 @@ git branch -r | grep -E "(v[0-9]+\.[0-9]+\.[0-9]+-release)" | sort
 # 检查工作流文件
 echo ""
 echo "⚙️  部署工作流:"
-ls -la .github/workflows/deploy-*.yml 2>/dev/null || echo "  未找到部署工作流文件"
+ls -la .github/workflows/*.yml 2>/dev/null || echo "  未找到部署工作流文件"
 
 # 检查GitHub Actions状态
 echo ""
@@ -39,7 +39,7 @@ echo "   访问: https://github.com/YuheCC/MD/settings/pages"
 echo ""
 echo "🔗 访问链接:"
 echo "   最新版本: https://yuhecc.github.io/MD/"
-echo "   V1.0.0版本: https://yuhecc.github.io/MD/v1.0.0/"
+echo "   版本选择: https://yuhecc.github.io/MD/versions.html"
 
 # 检查本地更改
 echo ""
