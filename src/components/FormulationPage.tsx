@@ -14,6 +14,7 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
   const [progress, setProgress] = useState(0);
 
   const handleSubmitConfiguration = async () => {
+    console.log("开始提交配置...");
     setIsLoading(true);
     setProgress(0);
     
@@ -22,6 +23,7 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
       setProgress(prev => {
         if (prev >= 100) {
           clearInterval(progressInterval);
+          console.log("进度条完成");
           return 100;
         }
         return prev + 2; // 每100ms增加2%，总共5秒完成
@@ -30,6 +32,7 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
     
     // 模拟计算过程，实际应用中这里会是真实的API调用
     setTimeout(() => {
+      console.log("计算完成，准备跳转...");
       setIsLoading(false);
       setProgress(0);
       onNavigateToResults();
