@@ -1,5 +1,4 @@
 import { ConfigurationHeader } from "./ConfigurationHeader";
-import { AnalysisRecords } from "./AnalysisRecords";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Download } from "lucide-react";
@@ -54,9 +53,9 @@ export function ResultsPage({ onNavigateBack, onNewAnalysis }: ResultsPageProps)
       <ConfigurationHeader />
       
       <div className="pb-12" style={{ paddingLeft: '100px', paddingRight: '100px' }}>
-        <div className="max-w-7xl mx-auto flex gap-8">
+        <div className="max-w-7xl mx-auto">
           {/* Main Content Area */}
-          <div className="flex-1 space-y-8">
+          <div className="space-y-8">
             {/* Results Header */}
             <div className="mb-6">
               <h1 className="font-semibold text-gray-900" style={{ fontSize: '20px' }}>Analysis Results</h1>
@@ -238,11 +237,6 @@ export function ResultsPage({ onNavigateBack, onNewAnalysis }: ResultsPageProps)
                 </CardContent>
               </Card>
             </div>
-          </div>
-
-          {/* Analysis Records Sidebar */}
-          <div className="w-72 flex-shrink-0">
-            <AnalysisRecords onNewAnalysis={onNewAnalysis} />
           </div>
         </div>
       </div>

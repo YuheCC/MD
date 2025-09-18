@@ -95,9 +95,9 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
         <ConfigurationHeader />
         
         <div className="pb-12" style={{ paddingLeft: '100px', paddingRight: '100px' }}>
-          <div className="max-w-7xl mx-auto flex gap-8">
+          <div className="max-w-7xl mx-auto">
             {/* Main Content Area - Loading Overlay */}
-            <div className="flex-1 flex justify-center" style={{ minHeight: '600px', paddingTop: 'calc(50% - 150px)' }}>
+            <div className="flex justify-center" style={{ minHeight: '600px', paddingTop: 'calc(50% - 150px)' }}>
               <div style={{ maxWidth: '500px', width: '100%' }}>
                 {/* Header with Icon and Title */}
                 <div className="flex items-center mb-4" style={{ marginTop: '-100px' }}>
@@ -126,11 +126,6 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
                   </div>
                 </div>
               </div>
-            </div>
-
-            {/* Analysis Records Sidebar - Still Visible */}
-            <div className="w-72 flex-shrink-0">
-              <AnalysisRecords />
             </div>
           </div>
         </div>
