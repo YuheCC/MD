@@ -18,10 +18,16 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
   // 示例历史分析记录数据
   const analysisRecords = [
     {
-      id: 1,
-      name: "LiPF6 + EC/EMC Analysis",
-      salt: "LiPF6",
-      solvent: "EC/EMC",
+      id: "AN-001",
+      salts: [
+        { name: "LiPF6", fraction: "0.6" },
+        { name: "LiBF4", fraction: "0.4" }
+      ],
+      solvents: [
+        { name: "EC", fraction: "0.5" },
+        { name: "EMC", fraction: "0.3" },
+        { name: "DMC", fraction: "0.2" }
+      ],
       concentration: "1.0 mol/kg",
       fractionType: "Molar fraction",
       totalFraction: "1.00",
@@ -29,10 +35,14 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
       status: "Completed"
     },
     {
-      id: 2,
-      name: "LiTFSI + DME Analysis",
-      salt: "LiTFSI",
-      solvent: "DME",
+      id: "AN-002",
+      salts: [
+        { name: "LiTFSI", fraction: "1.0" }
+      ],
+      solvents: [
+        { name: "DME", fraction: "0.7" },
+        { name: "DOL", fraction: "0.3" }
+      ],
       concentration: "0.8 mol/kg",
       fractionType: "Weight fraction",
       totalFraction: "1.00",
@@ -40,10 +50,14 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
       status: "Completed"
     },
     {
-      id: 3,
-      name: "LiBF4 + PC Analysis",
-      salt: "LiBF4",
-      solvent: "PC",
+      id: "AN-003",
+      salts: [
+        { name: "LiBF4", fraction: "0.8" },
+        { name: "LiPF6", fraction: "0.2" }
+      ],
+      solvents: [
+        { name: "PC", fraction: "1.0" }
+      ],
       concentration: "1.2 mol/kg",
       fractionType: "Molar fraction",
       totalFraction: "0.95",
@@ -173,13 +187,13 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Analysis Name
+                  Analysis ID
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Salt
+                  Salt (Fraction)
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Solvent
+                  Solvent (Fraction)
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Concentration
@@ -205,13 +219,27 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
               {analysisRecords.map((record) => (
                 <tr key={record.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    {record.name}
+                    {record.id}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {record.salt}
+                  <td className="px-6 py-4 text-sm text-gray-500">
+                    <div className="space-y-1">
+                      {record.salts.map((salt, index) => (
+                        <div key={index} className="flex items-center space-x-2">
+                          <span className="font-medium">{salt.name}</span>
+                          <span className="text-gray-400">({salt.fraction})</span>
+                        </div>
+                      ))}
+                    </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {record.solvent}
+                  <td className="px-6 py-4 text-sm text-gray-500">
+                    <div className="space-y-1">
+                      {record.solvents.map((solvent, index) => (
+                        <div key={index} className="flex items-center space-x-2">
+                          <span className="font-medium">{solvent.name}</span>
+                          <span className="text-gray-400">({solvent.fraction})</span>
+                        </div>
+                      ))}
+                    </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {record.concentration}
