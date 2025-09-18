@@ -57,8 +57,18 @@ export function ResultsPage({ onNavigateBack, onNewAnalysis }: ResultsPageProps)
           {/* Main Content Area */}
           <div className="space-y-8">
             {/* Results Header */}
-            <div className="mb-6">
+            <div className="mb-6 flex items-center justify-between">
               <h1 className="font-semibold text-gray-900" style={{ fontSize: '20px' }}>Analysis Results</h1>
+              <Button 
+                variant="outline" 
+                onClick={onNavigateBack}
+                className="flex items-center gap-2"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Back to List
+              </Button>
             </div>
 
             {/* System Properties */}
