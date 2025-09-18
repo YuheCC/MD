@@ -97,7 +97,7 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
         <div className="pb-12" style={{ paddingLeft: '100px', paddingRight: '100px' }}>
           <div className="max-w-7xl mx-auto">
             {/* Main Content Area - Loading Overlay */}
-            <div className="flex items-center justify-center" style={{ minHeight: '70vh' }}>
+            <div className="flex items-center justify-center" style={{ minHeight: '70vh', marginTop: '-30px' }}>
               <div className="text-center" style={{ maxWidth: '500px', width: '100%' }}>
                 {/* Header with Icon and Title */}
                 <div className="mb-6">
