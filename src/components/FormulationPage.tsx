@@ -45,7 +45,7 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
           <div className="max-w-7xl mx-auto flex gap-8">
             {/* Main Content Area - Loading Overlay */}
             <div className="flex-1 flex items-center justify-center" style={{ minHeight: '600px' }}>
-              <div className="bg-white rounded-lg shadow-lg p-8 border border-gray-200" style={{ maxWidth: '500px', width: '100%' }}>
+              <div style={{ maxWidth: '500px', width: '100%' }}>
                 {/* Header with Icon and Title */}
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center mr-4">
