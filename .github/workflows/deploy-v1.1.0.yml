@@ -1,4 +1,4 @@
-name: Deploy V1.1.0
+name: Deploy v1.1.0
 
 on:
   push:
