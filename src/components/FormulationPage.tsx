@@ -29,7 +29,8 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
         { name: "DMC", fraction: "0.2" }
       ],
       concentration: "1.0 mol/kg",
-      fractionType: "Molar fraction",
+      saltFractionType: "Molar fraction",
+      solventFractionType: "Molar fraction",
       totalFraction: "1.00",
       createdAt: "2024-01-15 14:30",
       status: "Completed"
@@ -44,7 +45,8 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
         { name: "DOL", fraction: "0.3" }
       ],
       concentration: "0.8 mol/kg",
-      fractionType: "Weight fraction",
+      saltFractionType: "Weight fraction",
+      solventFractionType: "Weight fraction",
       totalFraction: "1.00",
       createdAt: "2024-01-14 09:15",
       status: "Completed"
@@ -59,7 +61,8 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
         { name: "PC", fraction: "1.0" }
       ],
       concentration: "1.2 mol/kg",
-      fractionType: "Molar fraction",
+      saltFractionType: "Molar fraction",
+      solventFractionType: "Molar fraction",
       totalFraction: "0.95",
       createdAt: "2024-01-13 16:45",
       status: "Completed"
@@ -196,13 +199,16 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
                   Salt (Fraction)
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Fraction Type (Salt)
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Solvent (Fraction)
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Concentration
+                  Fraction Type (Solvent)
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Fraction Type
+                  Concentration
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Created
@@ -231,6 +237,9 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
                       ))}
                     </div>
                   </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {record.saltFractionType}
+                  </td>
                   <td className="px-6 py-4 text-sm text-gray-500">
                     <div className="space-y-1">
                       {record.solvents.map((solvent, index) => (
@@ -242,10 +251,10 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {record.concentration}
+                    {record.solventFractionType}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {record.fractionType}
+                    {record.concentration}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {record.createdAt}
