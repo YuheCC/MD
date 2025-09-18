@@ -256,22 +256,18 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <div className="flex space-x-2">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="text-blue-600 hover:text-blue-900"
+                    <div className="flex space-x-4">
+                      <button
+                        className="text-blue-600 hover:text-blue-900 hover:underline cursor-pointer"
                         onClick={() => onNavigateToResults()}
                       >
-                        <Eye className="w-4 h-4" />
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="text-red-600 hover:text-red-900"
+                        查看
+                      </button>
+                      <button
+                        className="text-red-600 hover:text-red-900 hover:underline cursor-pointer"
                       >
-                        <Trash2 className="w-4 h-4" />
-                      </Button>
+                        删除
+                      </button>
                     </div>
                   </td>
                 </tr>
