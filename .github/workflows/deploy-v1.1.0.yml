@@ -1,8 +1,8 @@
-name: Deploy V1.0.0
+name: Deploy V1.1.0
 
 on:
   push:
-    branches: [ v1.0.0-release ]
+    branches: [ v1.1.0-release ]
   workflow_dispatch:
 
 permissions:
@@ -21,7 +21,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: v1.0.0-release
+          ref: v1.1.0-release
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -39,7 +39,7 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
-          VITE_BASE_PATH: /MD/v1.0.0/
+          VITE_BASE_PATH: /MD/v1.1.0/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -48,7 +48,7 @@ jobs:
 
   deploy:
     environment:
-      name: github-pages-v1.0.0
+      name: github-pages-v1.1.0
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
