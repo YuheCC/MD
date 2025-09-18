@@ -155,9 +155,8 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
   // 渲染列表页面
   const renderListView = () => (
     <div className="space-y-6">
-      {/* 页面标题和新增按钮 */}
-      <div className="flex items-center justify-between">
-        <h2 className="text-xl font-semibold text-gray-900">Salt & Solvent Configuration</h2>
+      {/* 新增按钮 */}
+      <div className="flex justify-end">
         <Button 
           onClick={() => setCurrentView('config')}
           className="bg-primary hover:bg-primary/90 text-primary-foreground"
