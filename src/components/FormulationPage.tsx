@@ -129,7 +129,11 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
                 {/* Close Button */}
                 <div style={{ marginTop: '30px' }}>
                   <Button 
-                    onClick={() => setCurrentView('list')}
+                    onClick={() => {
+                      setIsLoading(false);
+                      setProgress(0);
+                      setCurrentView('list');
+                    }}
                     className="bg-primary hover:bg-primary/90 text-primary-foreground"
                   >
                     关闭
