@@ -110,7 +110,7 @@ export function FormulationPage({ onNavigateToResults }: FormulationPageProps) {
                     </svg>
                   </div>
                   <h2 className="font-bold text-gray-900 mb-2" style={{ fontSize: '24px' }}>算法模型计算中</h2>
-                  <p className="text-gray-500 text-base">系统正在处理您的模型参数,预计需要较长时间,请耐心等待</p>
+                  <p className="text-gray-600 text-base">系统正在处理您的模型参数,预计需要较长时间,请耐心等待</p>
                 </div>
 
                 {/* Information Box */}
